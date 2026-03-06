@@ -12,5 +12,5 @@ def subtract(x, y):
 
 
 def topla(a, b):
-    '''Add two numbers (Turkish version).'''
+    '''Add two numbers and return result.'''
     return a + b
