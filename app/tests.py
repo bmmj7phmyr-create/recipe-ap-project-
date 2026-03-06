@@ -19,3 +19,4 @@ class CalcTests(SimpleTestCase):
         """Test Turkish add function."""
         sonuc = calc.topla(5, 6)
         self.assertEqual(sonuc, 11)
+        
