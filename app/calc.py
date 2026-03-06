@@ -1,12 +1,16 @@
-'''Calculator function'''
+'''Calculator function.'''
+
 
 def add(x, y):
-    '''add x and y and return result.'''
+    '''Add x and y and return result.'''
     return x + y
 
+
 def subtract(x, y):
-    '''subtract y from x and return result.'''
+    '''Subtract y from x and return result.'''
     return x - y
 
+
 def topla(a, b):
+    '''Add two numbers (Turkish version).'''
     return a + b

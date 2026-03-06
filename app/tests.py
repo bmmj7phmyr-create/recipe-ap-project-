@@ -6,17 +6,18 @@ class CalcTests(SimpleTestCase):
     """Test the calc module."""
 
     def test_add_numbers(self):
+        """Test adding numbers."""
         res = calc.add(5, 6)
         self.assertEqual(res, 11)
 
     def test_subtract_numbers(self):
+        """Test subtracting numbers."""
         res = calc.subtract(10, 15)
         self.assertEqual(res, -5)
 
     def test_topla(self):
-        sonuc = calc.add(5, 6)
+        """Test Turkish add function."""
+        sonuc = calc.topla(5, 6)
         self.assertEqual(sonuc, 11)
-    
-       
               
                                   
