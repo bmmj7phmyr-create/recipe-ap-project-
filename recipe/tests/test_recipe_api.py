@@ -1,3 +1,8 @@
+from django.urls import reverse
+from rest_framework import status
+
+from core.models import Recipe, Ingredient
+
 def test_update_recipe_assign_ingredient(self):
     """Test assigning an existing ingredient when updating a recipe."""
     ingredient = Ingredient.objects.create(user=self.user, name='Cilantro')
