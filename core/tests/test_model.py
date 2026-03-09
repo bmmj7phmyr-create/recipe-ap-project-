@@ -1,6 +1,8 @@
 """
-Modeller için test.
+Modeller için testler.
 """
+
+from unittest.mock import patch
 from decimal import Decimal
 
 from django.contrib.auth import get_user_model
@@ -9,7 +11,7 @@ from django.test import TestCase
 from core import models
 
 
-def create_user(email='user@example.com', password='testpass123'):
+def create_user(email="user@example.com", password="testpass123"):
     """Create and return a new user."""
     return get_user_model().objects.create_user(email=email, password=password)
 
@@ -67,24 +69,37 @@ class ModelTests(TestCase):
 
         recipe = models.Recipe.objects.create(
             user=user,
-            title="sample recipe name",
+            title="Sample recipe name",
             time_minutes=5,
             price=Decimal("5.50"),
-            description="sample recipe description",
+            description="Sample recipe description",
         )
 
         self.assertEqual(str(recipe), recipe.title)
 
     def test_create_tag(self):
-        """Test creating a tag is successful."""
+        """Tag oluşturma testi."""
         user = create_user()
-        tag = models.Tag.objects.create(user=user, name='Vegan')
+        tag = models.Tag.objects.create(user=user, name="Vegan")
 
         self.assertEqual(str(tag), tag.name)
 
     def test_create_ingredient(self):
-        """Test creating an ingredient is successful."""
+        """Ingredient oluşturma testi."""
         user = create_user()
-        ingredient = models.Ingredient.objects.create(user=user, name='Cucumber')
+        ingredient = models.Ingredient.objects.create(
+            user=user,
+            name="Cucumber"
+        )
 
         self.assertEqual(str(ingredient), ingredient.name)
+
+    @patch("core.models.uuid.uuid4")
+    def test_recipe_file_name_uuid(self, mock_uuid):
+        """Image path oluşturma testi."""
+        uuid = "test-uuid"
+        mock_uuid.return_value = uuid
+
+        file_path = models.recipe_image_file_path(None, "example.jpg")
+
+        self.assertEqual(file_path, f"uploads/recipe/{uuid}.jpg")
